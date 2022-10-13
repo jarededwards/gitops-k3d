@@ -4,7 +4,7 @@ metadata:
   name: actions-runner-kubefirst
 spec:
   # This will deploy 2 runners now
-  replicas: 1
+  replicas: 2
   template:
     spec:  
       organization: jarededwards
