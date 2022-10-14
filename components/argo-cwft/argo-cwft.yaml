@@ -73,3 +73,21 @@ spec:
     #   - configMap:
     #       name: docker-config-cm
     #     name: docker-config
+  - name: podman-build
+    inputs:
+      artifacts:
+      - name: repo-source
+        path: /src
+      parameters: 
+      - name: appDir
+      - name: appName
+    container:
+      image:  mgoltzsche/podman
+      command: [bash, -c]
+      workingDir: /src/miller
+      args:
+        - podman version;
+          echo {{workflow.parameters.appName}};
+      # env:
+      # - name: DOCKER_HOST
+      #   value: "tcp://localhost:2375"
