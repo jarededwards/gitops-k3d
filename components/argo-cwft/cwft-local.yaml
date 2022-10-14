@@ -49,6 +49,13 @@ spec:
       env:
       - name: DOCKER_HOST
         value: "tcp://localhost:2375"
+      volumeMounts:
+      - mountPath: /etc/docker
+        name: docker-config
+    volumes:
+      - configMap:
+          name: docker-config-cm
+        name: docker-config
     sidecars:
     - name: dind
       image: docker:19.03.13-dind
@@ -66,13 +73,13 @@ spec:
       securityContext:
         privileged: true
       mirrorVolumeMounts: true
-    #   volumeMounts:
-    #   - mountPath: /etc/docker
-    #     name: docker-config
-    # volumes:
-    #   - configMap:
-    #       name: docker-config-cm
-    #     name: docker-config
+      volumeMounts:
+      - mountPath: /etc/docker
+        name: docker-config
+    volumes:
+      - configMap:
+          name: docker-config-cm
+        name: docker-config
   - name: podman-build
     inputs:
       artifacts:
