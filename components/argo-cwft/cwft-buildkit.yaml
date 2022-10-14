@@ -115,14 +115,17 @@ spec:
           - name: BUILDKITD_FLAGS
             value: "--oci-worker-no-process-sandbox"
         command:
-          - tail -f /dev/null #&& buildctl-daemonless.sh
+          - tail
+            # buildctl-daemonless.sh
         args:
-          - build
-          - --frontend
-          - dockerfile.v0
-          - --local
-          - context=.
-          - --local
-          - dockerfile=.
-          - --output
-          - type=image,name={{workflow.parameters.image}},push=true,registry.insecure=true
+          - -f
+          - /dev/null
+          # - build
+          # - --frontend
+          # - dockerfile.v0
+          # - --local
+          # - context=.
+          # - --local
+          # - dockerfile=.
+          # - --output
+          # - type=image,name={{workflow.parameters.image}},push=true,registry.insecure=true
