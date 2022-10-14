@@ -86,8 +86,8 @@ spec:
       command: [sh, -c]
       workingDir: /src/miller
       args:
-        - podman build -t localhost:63630/miller:0.0.1 .;
-          podman push --tls-verify=false localhost:63630/miller:0.0.1;
+        - podman build --tls-verify=false -t 192.168.0.105:63630/miller:1.0.10 .;
+          podman push --tls-verify=false 192.168.0.105:63630/miller:1.0.10;
       # env:
       # - name: DOCKER_HOST
       #   value: "tcp://localhost:2375"
