@@ -13,7 +13,7 @@ spec:
       - name: path
         value: .
       - name: image
-        value: 192.168.0.105:63630/miller:1.0.7,kubefirst-registry:5000/miller:1.0.7,localhost:5000/miller:1.0.7
+        value: 192.168.0.105:63630/miller:1.0.7,localhost:5000/miller:1.0.7
   entrypoint: main
   # We use a volume claim template so that we can have a shared workspace.
   volumeClaimTemplates:
