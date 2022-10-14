@@ -87,7 +87,6 @@ spec:
       workingDir: /src/miller
       args:
         - podman version;
-          echo {{workflow.parameters.appName}};
       # env:
       # - name: DOCKER_HOST
       #   value: "tcp://localhost:2375"
