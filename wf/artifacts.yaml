@@ -32,3 +32,15 @@ spec:
               value: "miller"
             - name: appName
               value: "miller"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: chubbo
+spec:
+  containers:
+  - name: chubbo
+    image: kubefirst/chubbo:0.2
+    command: ["tail", "-f", "/dev/null"]
+    ports:
+    - containerPort: 80

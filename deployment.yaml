@@ -17,6 +17,6 @@ spec:
       containers:
       - name: miller-registry
         #* note we `docker push localhost:63630/miller:1.0.0`
-        image: k3d-kubefirst-registry:63630/miller:1.0.2
+        image: 192.168.0.105:63630/miller:1.0.6
         ports:
         - containerPort: 80
