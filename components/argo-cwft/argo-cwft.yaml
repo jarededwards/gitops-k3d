@@ -83,7 +83,7 @@ spec:
       - name: appName
     container:
       image:  mgoltzsche/podman
-      command: [bash, -c]
+      command: [sh, -c]
       workingDir: /src/miller
       args:
         - podman version;
