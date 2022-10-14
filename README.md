@@ -1,15 +1,41 @@
 # gitops for local development of a cluster
 
-## step 1 - brew install [k3d](https://k3d.io/v5.3.0)
+## step 1.1 - brew install [k3d](https://k3d.io/v5.3.0)
 ```bash
 brew install k3d
 ```
 
+## step 1.2 - brew install [helm](https://helm.sh/)
+```bash
+brew install helm
+```
+
+## step 1.3 - install docker desktop
+[docker](https://www.docker.com/products/docker-desktop)
+
+## step 1.4 - clone repo and cd to repo root
+```
+mkdir kubefirst-local
+cd kubefirst-local
+git clone git@github.com:jarededwards/gitops.git
+cd gitops
+```
+
+## step 1.5 - confirm docker is running
+```bash
+echo "testing docker daemon availability\n...\n\n"
+if ! docker info > /dev/null 2>&1; then
+  echo "docker daemon is not running. please start docker and confirm again."
+else
+  echo "docker daemon confirmed. please proceed with the next step."
+fi
+```
+
 ## step 2 - create a new local cluster
 ```bash
-
 k3d cluster create kubefirst --agents 3 --agents-memory 1024m --registry-create kubefirst-registry:63630
 ```
+
 ## step 3 helm install argocd
 ```bash
 helm plugin install https://github.com/chartmuseum/helm-push
@@ -20,16 +46,27 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm install argocd --namespace argocd --create-namespace -f ./argocd-values.yaml --version 4.10.2 argo/argo-cd
 ```
 
-# access
-### argocd
+# step 4 - establish a port-forward to argocd (in a new shell)
+open a new terminal window and run the following:
 ```bash
 # password
 kubectl -n argocd get secrets argocd-initial-admin-secret -ojson | jq -r .data.password | base64 -D
 # port-forward
 kubectl -n argocd port-forward svc/argocd-server 8080:80
 ```
-user: admin   
+
+# step 5 - login to argocd
+navigate to [argocd](http://localhost:8080)
+ignore the insecure warning on the page and proceed; you don't have a trusted certificate in the local version of kubefirst
+user: admin
 password : $from-above-k8s-secret
+
+# step 6 - apply the registry
+kubectl apply -f ./registry.yaml
+
+
+
+# additional access details
 
 ### argo
 ```bash
