@@ -9,5 +9,6 @@ data:
       "insecure-registries": ["k3d-kubefirst-registry:5000", "192.168.0.105:63630"],
       "debug": true,
       "tls": false,
+      "tlsverify": false,
       "experimental": true
     }
