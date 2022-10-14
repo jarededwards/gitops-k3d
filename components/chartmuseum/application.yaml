@@ -22,6 +22,11 @@ spec:
             STORAGE_AMAZON_ENDPOINT: http://minio.minio.svc.cluster.local:9000
             DISABLE_API: false
           existingSecret: chartmuseum-secrets
+          existingSecretMappings:
+            BASIC_AUTH_USER:
+            BASIC_AUTH_PASS:
+            AWS_ACCESS_KEY_ID:
+            AWS_SECRET_ACCESS_KEY:
     chart: chartmuseum
   destination: 
     server: https://kubernetes.default.svc
