@@ -36,6 +36,12 @@ fi
 k3d cluster create kubefirst --agents 3 --agents-memory 1024m --registry-create kubefirst-registry:63630
 ```
 
+# create known secrets
+```bash
+# see keybase for secret
+pbpaste | k apply -f
+```
+
 ## step 3 helm install argocd
 ```bash
 helm plugin install https://github.com/chartmuseum/helm-push

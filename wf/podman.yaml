@@ -13,6 +13,11 @@ spec:
   templates:
     - name: main
       steps:
+      - - name: checkout
+          templateRef:
+            name: cwft-local
+            template: git-checkout
+            clusterScope: true
       - - name: publish-container
           templateRef:
             name: cwft-local
