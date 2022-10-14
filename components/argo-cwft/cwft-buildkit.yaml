@@ -13,7 +13,7 @@ spec:
       - name: path
         value: .
       - name: image
-        value: 192.168.0.105:63630/miller:1.0.7,localhost:5000/miller:1.0.7
+        value: kubefirst-registry:63630/miller:1.0.7
   entrypoint: main
   # We use a volume claim template so that we can have a shared workspace.
   volumeClaimTemplates:
@@ -115,7 +115,7 @@ spec:
           - name: BUILDKITD_FLAGS
             value: "--oci-worker-no-process-sandbox"
         command:
-          - buildctl-daemonless.sh
+          - tail -f /dev/null #&& buildctl-daemonless.sh
         args:
           - build
           - --frontend
